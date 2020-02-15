@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fir-demo-11f74": {
+      "hosting": {
+        "angular-project": [
+          "fir-demo-11f74"
+        ]
+      }
+    }
+  }
+}
