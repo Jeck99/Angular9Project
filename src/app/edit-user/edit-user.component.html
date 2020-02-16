@@ -10,7 +10,7 @@
         <a mat-flat-button color="primary" (click)="showUserDetails()"><mat-icon>info</mat-icon></a>
     </div>
     <mat-card class="example-card">
-        <form [formGroup]="usersForm" (ngSubmit)="onEditFormSubmit()">
+        <form [formGroup]="usersForm" (ngSubmit)="onFormEditSubmit()">
             <mat-form-field class="example-full-width">
                 <mat-label>Prefix</mat-label>
                 <mat-select formControlName="prefix">
