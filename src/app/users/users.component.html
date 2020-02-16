@@ -1,26 +1,44 @@
-<div style="padding: 13px;display: flex; width: 30%;">
-    <mat-spinner *ngIf="users.length === 0"></mat-spinner>
+<div class="example-container mat-elevation-z8">
+    <h2>Users List</h2>
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+        <a mat-flat-button color="primary" [routerLink]="['/add-user']">
+            <mat-icon>add</mat-icon> User
+        </a>
+        <a mat-flat-button color="accent" [routerLink]="['/Users-stat']">
+            <mat-icon>bar_chart</mat-icon> Statistic
+        </a>
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="users" class="example-table" matSort matSortActive="firstName" matSortDisableClear
+            matSortDirection="asc">
 
-    <mat-card *ngFor="let user of users" style="margin:10px;width: 240px;">
-        <mat-card-header>
-            <mat-card-title>{{user.firstName}}</mat-card-title>
-            <mat-card-subtitle>{{user.email}}
-            </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>
-                {{user.title}}
-            </p>
-            <img style="height:30%; width: 30%;" src="{{ user.imageUrl }}" />
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button> Call user</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div>
-    <button (click)="firstPage()" mat-button> First</button>
-    <button (click)="previousPage()" mat-button> Previous</button>
-    <button (click)="nextPage()" mat-button> Next</button>
-    <button (click)="lastPage()" mat-button> Last</button>
+            <ng-container matColumnDef="prefix">
+                <th mat-header-cell *matHeaderCellDef>Users prefix</th>
+                <td mat-cell *matCellDef="let row">{{row.prefix}}</td>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <th mat-header-cell *matHeaderCellDef>Users lastName</th>
+                <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>Users firstName</th>
+                <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Users title</th>
+                <td mat-cell *matCellDef="let row">{{row.title}}</td>
+            </ng-container>
+            <ng-container matColumnDef="jobDescriptor">
+                <th mat-header-cell *matHeaderCellDef>Users Job Description</th>
+                <td mat-cell *matCellDef="let row">{{row.jobDescriptor}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/details/', row.id]">
+            </tr>
+        </table>
+    </div>
 </div>
